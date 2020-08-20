@@ -64,7 +64,7 @@ buildPipeline(script) {
             sh 'npm run lint'
         }
         pipelineStage(script, "Test") {
-            sh 'npm test'
+            sh 'CI=true npm test'
         }
         pipelineStage(script, "Build") {
             sh 'npm run build'
@@ -76,7 +76,7 @@ buildPipeline(script) {
     pipelineNode(nodeName: 'python3', script) {
         
         unstash deployable
-        
+
         pipelineStage(script, "Deploy") {
             echo 'do a deploy'
         }

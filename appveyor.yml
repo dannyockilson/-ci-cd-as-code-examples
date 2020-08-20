@@ -8,6 +8,6 @@ build_script:
   - npm run build
 test_script:
   - npm run lint # no linting stage in AppVeyor so ran as part of tests
-  - npm test
+  - CI=true npm test
 deploy_script:
   - echo "do a deploy"
