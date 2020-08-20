@@ -60,7 +60,7 @@ buildPipeline(script) {
         pipelineStage(script, "Install") {
             sh 'npm ci'
         }
-        pipelineStage(scriptm "Lint") {
+        pipelineStage(script, "Lint") {
             sh 'npm run lint'
         }
         pipelineStage(script, "Test") {
