@@ -75,7 +75,7 @@ buildPipeline(script) {
     
     pipelineNode(nodeName: 'python3', script) {
         
-        unstash deployable
+        unstash 'deployable'
 
         pipelineStage(script, "Deploy") {
             sh 'zip -r build.zip build'
