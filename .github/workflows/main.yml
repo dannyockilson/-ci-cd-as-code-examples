@@ -25,12 +25,5 @@ jobs:
         with:
           name: deployable
           path: build
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download build artifact
-        uses: actions/download-artifact@master
-        with:
-          name: deployable
       - name: Deploy
         run: echo 'do a deploy'
