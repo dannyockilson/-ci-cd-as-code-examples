@@ -2,11 +2,11 @@
 
 Shows a few examples of running the same basic workflow through multiple different CI/CD tools.
 
-* AppVeyor - appveyor.yml
-* Gitlab CI - .gitlab-ci.yml
-* Github Actions - .github/workflows/main.yml
-* Jenkins (scripted) - deploy.jenkinsfile
-* Jenkins (declarative) - multibranch.jenkinsfile
+* AppVeyor - appveyor.yml - TODO
+* Gitlab CI - .gitlab-ci.yml - https://gitlab.com/ockilson/ci-cd-as-code-examples/-/pipelines
+* Github Actions - .github/workflows/main.yml - https://github.com/dannyockilson/-ci-cd-as-code-examples/actions/
+* Jenkins (scripted) - deploy.jenkinsfile - https://jenkins.qa.indeed.net/indeediq-dashboard/job/indeediq-dashboard/job/indeediq--ci-cd-as-code-examples/ (Internal only - VPN required)
+* Jenkins (declarative) - multibranch.jenkinsfile - https://jenkins.qa.indeed.net/indeediq-dashboard/job/indeediq-dashboard/job/indeediq--ci-cd-as-code-examples-multibranch/job/master/ (Internal only - VPN required)
 
 ## Basic Automation Pipeline
 
