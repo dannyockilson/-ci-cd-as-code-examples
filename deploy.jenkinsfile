@@ -70,7 +70,7 @@ buildPipeline(script) {
             sh 'npm run build'
         }
 
-        stash includes: 'dist/**/*', name: 'deployable'
+        stash includes: 'build/**/*', name: 'deployable'
     }
     
     pipelineNode(nodeName: 'python3', script) {
