@@ -1,0 +1,13 @@
+image: Ubuntu1804
+environment:
+  NODE_VERSION: 12
+install:
+  - nvm install $NODE_VERSION
+  - npm ci
+build_script:
+  - npm run build
+test_script:
+  - npm run lint # no linting stage in AppVeyor so ran as part of tests
+  - npm test
+deploy_script:
+  - echo "do a deploy"

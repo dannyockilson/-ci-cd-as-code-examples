@@ -1,0 +1,36 @@
+name: CI
+
+on: [push]
+
+jobs:
+  bundle:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Branch
+        uses: actions/checkout@v1
+      - name: Setup node (v12.x)
+        uses: actions/setup-node@v1
+        with:
+          node-version: "12.x"
+      - name: Install
+        run: npm ci
+      - name: Lint
+        run: npm run lint
+      - name: Test
+        run: npm test
+      - name: Build
+        run: npm run build
+      - name: Upload build artifact
+        uses: actions/upload-artifact@master
+        with:
+          name: deployable
+          path: dist
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@master
+        with:
+          name: deployable
+      - name: Deploy
+        run: echo 'do a deploy'

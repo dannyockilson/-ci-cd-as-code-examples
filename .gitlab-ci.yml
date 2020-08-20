@@ -1,0 +1,41 @@
+image: node:12
+
+stages:
+  - install
+  - lint
+  - test
+  - build
+  - deploy
+
+run_install:
+  stage: install
+  script:
+  - npm ci
+  artifacts:
+    untracked: true
+
+run_lint:
+  stage: lint
+  script:
+  - npm run lint
+
+run_test:
+  stage: test
+  script:
+  - npm test
+
+run_build:
+  stage: build
+  script:
+  - npm run build
+  artifacts:
+    untracked: true
+
+run_deploy:
+  stage: deploy
+  image: python:latest
+  script:
+  - echo "do a deploy"
+  only:
+    refs:
+    - master

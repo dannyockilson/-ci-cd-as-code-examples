@@ -1,33 +1,32 @@
-#!/usr/bin/env groovy
-@Library('pipeline@release/2.x') _
-
-script = this
-
-// Discard old builds and artifacts
-properties([buildDiscarder(logRotator(daysToKeepStr: '5', numToKeepStr: '3', artifactDaysToKeepStr: '5', artifactNumToKeepStr: '1'))])
-
-// Use bootstrapNonDeployablePipeline if you don't want to deploy through feature branches
-bootstrapNonDeployablePipeline(script) {
-    // Product group
-    config.productGroup = "indeediq-dashboard"
-    // Jenkins will send an email when there is a new build available to the following list of comma-separated addresses
-    config.newBuildAvailableEmailList = ""
-    // Jenkins will send an email if the build fails to the following list of comma-separated addresses and everyone who committed since the last successful build
-    config.failureEmailList = config.newBuildAvailableEmailList
-
-    // Git URL
-    gitConfig.gitUrl = "git@code.corp.indeed.com:indeediq/ci-cd-as-code-examples.git"
-    // Let Jenkins define the gitBranch for you
-    gitConfig.gitBranch = env.BRANCH_NAME
-    // Disabling this will disable all interactions between Jenkins and Jira.
-    jiraConfig.enableJiraActions = false
-    // Use dockerized build
-    config.buildInDocker = true
-
-    // Jenkins will email all commit authors
-    config.sendEmailsToCommitAuthors = true
-}
-
-buildPipeline(script) {
-
+pipeline {
+    agent { label 'indeed-node12-large' }
+    stages {
+        stage('Install') {
+            steps {
+                sh 'npm ci'
+            }
+        }
+        stage('Lint') {
+            steps {
+                sh 'npm run lint'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'npm test'
+            }
+        }
+        stage('Build') {
+            steps {
+                sh 'npm run build'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                node('python3') {
+                    echo 'do a deploy'
+                }
+            }
+        }
+    }
 }
